@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import productImage from "@/assets/sarkar-legion.png";
+import plinthImage from "@/assets/legion-plinth.jpg";
+import noteTop from "@/assets/note-top.jpg";
+import noteHeart from "@/assets/note-heart.jpg";
+import noteBase from "@/assets/note-base.jpg";
+import filmAsset from "@/assets/legion-film.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -102,11 +107,65 @@ function Index() {
             <h2 className="text-center font-display text-2xl font-semibold tracking-widest">FRAGRANCE NOTES</h2>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {notes.map((note) => (
-                <div key={note.title} className="border border-border bg-background p-8 md:p-10">
-                  <h3 className="text-xs font-semibold tracking-[0.2em] text-muted-foreground">{note.title}</h3>
-                  <p className="mt-4 font-display text-2xl font-semibold leading-snug">{note.items}</p>
+                <div key={note.title} className="border border-border bg-background">
+                  <img
+                    src={note.image}
+                    alt={note.items}
+                    width={1024}
+                    height={1024}
+                    loading="lazy"
+                    className="aspect-square w-full object-cover"
+                  />
+                  <div className="p-8 md:p-10">
+                    <h3 className="text-xs font-semibold tracking-[0.2em] text-muted-foreground">{note.title}</h3>
+                    <p className="mt-4 font-display text-2xl font-semibold leading-snug">{note.items}</p>
+                  </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Film */}
+        <section className="border-t border-border">
+          <div className="container mx-auto px-6 py-16 md:px-12 lg:py-24">
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+              <video
+                src={filmAsset.url}
+                poster={plinthImage}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full border border-border object-cover"
+              />
+              <div>
+                <h2 className="font-display text-2xl font-semibold tracking-widest">THE FILM</h2>
+                <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+                  Sculpted in matte black, weighted like the piece it is named for. Legion is built to be held before
+                  it is ever worn.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Editorial */}
+        <section className="border-t border-border bg-secondary">
+          <div className="container mx-auto grid gap-6 px-6 py-16 md:grid-cols-2 md:px-12 lg:py-24">
+            <img
+              src={plinthImage}
+              alt="Sarkar Legion bottle on a concrete plinth"
+              width={1280}
+              height={1600}
+              loading="lazy"
+              className="w-full border border-border object-cover"
+            />
+            <div className="flex flex-col justify-center border border-border bg-background p-10 md:p-14">
+              <h2 className="font-display text-2xl font-semibold tracking-widest">MADE TO LAST</h2>
+              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+                24% parfum concentration. 10+ hours of wear. One spray is a statement, two is a strategy.
+              </p>
             </div>
           </div>
         </section>
@@ -136,7 +195,7 @@ function Index() {
 }
 
 const notes = [
-  { title: "TOP NOTES", items: "Bergamot, Pink Pepper, Cardamom" },
-  { title: "HEART NOTES", items: "Oud, Rose, Geranium" },
-  { title: "BASE NOTES", items: "Amber, Sandalwood, Vetiver" },
+  { title: "TOP NOTES", items: "Bergamot, Pink Pepper, Cardamom", image: noteTop },
+  { title: "HEART NOTES", items: "Oud, Rose, Geranium", image: noteHeart },
+  { title: "BASE NOTES", items: "Amber, Sandalwood, Vetiver", image: noteBase },
 ];
