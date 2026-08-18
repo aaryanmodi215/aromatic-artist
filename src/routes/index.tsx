@@ -67,8 +67,8 @@ function Index() {
                 </span>
               </div>
               <h1 className="mt-6 font-display text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-                LEGION
-                <span className="ml-3 align-top text-lg font-medium text-muted-foreground md:text-xl">
+                LEGION{" "}
+                <span className="ml-0 align-top text-lg font-medium text-muted-foreground md:text-xl">
                   (100ML)
                 </span>
               </h1>
