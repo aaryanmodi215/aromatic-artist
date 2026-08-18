@@ -51,7 +51,7 @@ function Index() {
                 width={1024}
                 height={1024}
                 className="w-full max-w-sm md:max-w-md lg:max-w-lg"
-                priority={true}
+                loading="eager"
               />
             </div>
             <div className="order-1 lg:order-2">
