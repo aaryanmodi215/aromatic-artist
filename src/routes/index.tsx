@@ -55,6 +55,24 @@ function PageContent() {
 
   const handleAdd = () => addItem({ ...PRODUCT, image: productImage }, qty);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    const tryPlay = () => void el.play().catch(() => {});
+    tryPlay();
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => (e.isIntersecting ? tryPlay() : el.pause())),
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    window.addEventListener("pointerdown", tryPlay, { once: true });
+    return () => {
+      io.disconnect();
+      window.removeEventListener("pointerdown", tryPlay);
+    };
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       {/* Header */}
