@@ -203,12 +203,16 @@ function PageContent() {
           <div className="container mx-auto px-6 py-16 md:px-12 lg:py-24">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
               <video
+                ref={videoRef}
                 src={filmAsset.url}
                 poster={plinthImage}
                 autoPlay
                 muted
                 loop
                 playsInline
+                preload="auto"
+                controls
+                onClick={() => void videoRef.current?.play().catch(() => {})}
                 className="w-full border border-border object-cover"
               />
               <div>
