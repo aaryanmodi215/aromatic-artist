@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CartProvider, useCart, formatINR } from "@/components/cart";
 import { Minus, Plus, ShoppingBag } from "lucide-react";
