@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { CartProvider, useCart, formatINR } from "@/components/cart";
+import { Minus, Plus, ShoppingBag } from "lucide-react";
 import productImage from "@/assets/sarkar-legion.png";
 import plinthImage from "@/assets/legion-plinth.jpg";
 import noteTop from "@/assets/note-top.jpg";
@@ -29,7 +32,29 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const PRODUCT = {
+  id: "legion-100ml",
+  name: "LEGION",
+  variant: "100ML · Unisex Parfum",
+  price: 2499,
+  mrp: 3499,
+};
+
 function Index() {
+  return (
+    <CartProvider>
+      <PageContent />
+    </CartProvider>
+  );
+}
+
+function PageContent() {
+  const { addItem, openCart, count } = useCart();
+  const [qty, setQty] = useState(1);
+  const discount = Math.round(((PRODUCT.mrp - PRODUCT.price) / PRODUCT.mrp) * 100);
+
+  const handleAdd = () => addItem({ ...PRODUCT, image: productImage }, qty);
+
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       {/* Header */}
@@ -38,9 +63,12 @@ function Index() {
           <span className="font-display text-xl font-medium tracking-[0.3em]">SARKAR</span>
           <Button
             size="sm"
+            onClick={openCart}
+            aria-label="Open cart"
             className="rounded-none bg-foreground px-5 py-2 text-xs font-semibold tracking-widest text-background hover:bg-foreground/85"
           >
-            Buy Now
+            <ShoppingBag className="mr-2 h-4 w-4" />
+            CART ({count})
           </Button>
         </div>
       </header>
@@ -85,12 +113,38 @@ function Index() {
                 sandalwood closes it for good.
               </p>
               <div className="mt-8">
-                <p className="text-3xl font-semibold tracking-tight">₹2,499</p>
+                <div className="flex flex-wrap items-baseline gap-3">
+                  <p className="text-3xl font-semibold tracking-tight">{formatINR(PRODUCT.price)}</p>
+                  <p className="text-lg text-muted-foreground line-through">{formatINR(PRODUCT.mrp)}</p>
+                  <span className="bg-foreground px-2 py-1 text-xs font-semibold tracking-widest text-background">
+                    {discount}% OFF
+                  </span>
+                </div>
                 <p className="text-sm text-muted-foreground">Incl. of all taxes</p>
               </div>
               <div className="mt-8 flex flex-wrap items-center gap-4">
+                <div className="flex items-center border border-border">
+                  <button
+                    type="button"
+                    aria-label="Decrease quantity"
+                    onClick={() => setQty((q) => Math.max(1, q - 1))}
+                    className="px-4 py-4 transition-colors hover:bg-secondary"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <span className="min-w-10 text-center text-sm font-semibold">{qty}</span>
+                  <button
+                    type="button"
+                    aria-label="Increase quantity"
+                    onClick={() => setQty((q) => Math.min(10, q + 1))}
+                    className="px-4 py-4 transition-colors hover:bg-secondary"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
                 <Button
                   size="lg"
+                  onClick={handleAdd}
                   className="rounded-none bg-foreground px-8 py-6 text-sm font-semibold tracking-widest text-background hover:bg-foreground/85"
                 >
                   ADD TO CART
