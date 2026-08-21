@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CartProvider, useCart, formatINR } from "@/components/cart";
 import { Minus, Plus, ShoppingBag } from "lucide-react";
@@ -54,6 +54,24 @@ function PageContent() {
   const discount = Math.round(((PRODUCT.mrp - PRODUCT.price) / PRODUCT.mrp) * 100);
 
   const handleAdd = () => addItem({ ...PRODUCT, image: productImage }, qty);
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    const tryPlay = () => void el.play().catch(() => {});
+    tryPlay();
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => (e.isIntersecting ? tryPlay() : el.pause())),
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    window.addEventListener("pointerdown", tryPlay, { once: true });
+    return () => {
+      io.disconnect();
+      window.removeEventListener("pointerdown", tryPlay);
+    };
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
@@ -185,12 +203,16 @@ function PageContent() {
           <div className="container mx-auto px-6 py-16 md:px-12 lg:py-24">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
               <video
+                ref={videoRef}
                 src={filmAsset.url}
                 poster={plinthImage}
                 autoPlay
                 muted
                 loop
                 playsInline
+                preload="auto"
+                controls
+                onClick={() => void videoRef.current?.play().catch(() => {})}
                 className="w-full border border-border object-cover"
               />
               <div>
