@@ -104,10 +104,13 @@ function PageContent() {
               <img
                 src={productImage}
                 alt="Sarkar Legion perfume bottle"
-                width={1024}
-                height={1024}
+                width={900}
+                height={900}
                 className="w-full max-w-sm md:max-w-md lg:max-w-lg"
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                sizes="(min-width: 1024px) 32rem, 90vw"
               />
             </div>
             <div className="order-1 lg:order-2">
