@@ -209,13 +209,15 @@ function PageContent() {
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
               <video
                 ref={videoRef}
-                src={filmAsset.url}
+                src={filmSrc}
                 poster={plinthImage}
+                width={1280}
+                height={720}
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="none"
                 controls
                 onClick={() => void videoRef.current?.play().catch(() => {})}
                 className="w-full border border-border object-cover"
