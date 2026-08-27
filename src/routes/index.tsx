@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CartProvider, useCart, formatINR } from "@/components/cart";
 import { Minus, Plus, ShoppingBag } from "lucide-react";
-import productImage from "@/assets/sarkar-legion.png";
-import plinthImage from "@/assets/legion-plinth.jpg";
-import noteTop from "@/assets/note-top.jpg";
-import noteHeart from "@/assets/note-heart.jpg";
-import noteBase from "@/assets/note-base.jpg";
+import productImage from "@/assets/sarkar-legion.webp";
+import plinthImage from "@/assets/legion-plinth.webp";
+import noteTop from "@/assets/note-top.webp";
+import noteHeart from "@/assets/note-heart.webp";
+import noteBase from "@/assets/note-base.webp";
 import filmAsset from "@/assets/legion-film.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
