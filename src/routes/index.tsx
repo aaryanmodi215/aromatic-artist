@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CartProvider, useCart, formatINR } from "@/components/cart";
 import { Minus, Plus, ShoppingBag } from "lucide-react";
-import productImage from "@/assets/sarkar-legion.png";
-import plinthImage from "@/assets/legion-plinth.jpg";
-import noteTop from "@/assets/note-top.jpg";
-import noteHeart from "@/assets/note-heart.jpg";
-import noteBase from "@/assets/note-base.jpg";
+import productImage from "@/assets/sarkar-legion.webp";
+import plinthImage from "@/assets/legion-plinth.webp";
+import noteTop from "@/assets/note-top.webp";
+import noteHeart from "@/assets/note-heart.webp";
+import noteBase from "@/assets/note-base.webp";
 import filmAsset from "@/assets/legion-film.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -28,6 +28,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "preload", as: "image", href: productImage, fetchPriority: "high" }],
   }),
   component: Index,
 });
@@ -56,21 +57,25 @@ function PageContent() {
   const handleAdd = () => addItem({ ...PRODUCT, image: productImage }, qty);
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [filmSrc, setFilmSrc] = useState<string | undefined>(undefined);
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
     const tryPlay = () => void el.play().catch(() => {});
-    tryPlay();
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => (e.isIntersecting ? tryPlay() : el.pause())),
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setFilmSrc(filmAsset.url);
+            tryPlay();
+          } else {
+            el.pause();
+          }
+        }),
       { threshold: 0.25 },
     );
     io.observe(el);
-    window.addEventListener("pointerdown", tryPlay, { once: true });
-    return () => {
-      io.disconnect();
-      window.removeEventListener("pointerdown", tryPlay);
-    };
+    return () => io.disconnect();
   }, []);
 
   return (
@@ -99,10 +104,13 @@ function PageContent() {
               <img
                 src={productImage}
                 alt="Sarkar Legion perfume bottle"
-                width={1024}
-                height={1024}
+                width={900}
+                height={900}
                 className="w-full max-w-sm md:max-w-md lg:max-w-lg"
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                sizes="(min-width: 1024px) 32rem, 90vw"
               />
             </div>
             <div className="order-1 lg:order-2">
@@ -204,13 +212,15 @@ function PageContent() {
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
               <video
                 ref={videoRef}
-                src={filmAsset.url}
+                src={filmSrc}
                 poster={plinthImage}
+                width={1280}
+                height={720}
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="none"
                 controls
                 onClick={() => void videoRef.current?.play().catch(() => {})}
                 className="w-full border border-border object-cover"
