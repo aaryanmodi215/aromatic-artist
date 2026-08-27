@@ -191,9 +191,11 @@ function PageContent() {
                   <img
                     src={note.image}
                     alt={note.items}
-                    width={1024}
-                    height={1024}
+                    width={800}
+                    height={800}
                     loading="lazy"
+                    decoding="async"
+                    sizes="(min-width: 768px) 33vw, 100vw"
                     className="aspect-square w-full object-cover"
                   />
                   <div className="p-8 md:p-10">
@@ -242,9 +244,11 @@ function PageContent() {
             <img
               src={plinthImage}
               alt="Sarkar Legion bottle on a concrete plinth"
-              width={1280}
-              height={1600}
+              width={900}
+              height={1125}
               loading="lazy"
+              decoding="async"
+              sizes="(min-width: 768px) 50vw, 100vw"
               className="w-full border border-border object-cover"
             />
             <div className="flex flex-col justify-center border border-border bg-background p-10 md:p-14">
