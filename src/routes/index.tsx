@@ -182,12 +182,29 @@ function PageContent() {
           </div>
         </section>
 
+        {/* Marquee */}
+        <section className="overflow-hidden border-y border-border bg-foreground py-4 text-background">
+          <div className="flex w-max animate-marquee">
+            {[0, 1].map((k) => (
+              <div key={k} className="flex shrink-0 items-center">
+                {["Oud", "Bergamot", "Rose", "Amber", "Sandalwood", "Vetiver", "Pink Pepper"].map((w) => (
+                  <span key={w} className="flex items-center">
+                    <span className="px-6 font-display text-xl italic">{w}</span>
+                    <span className="text-xs">✦</span>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Fragrance Notes */}
         <section className="border-t border-border bg-secondary">
           <div className="container mx-auto px-6 py-16 md:px-12 lg:py-24">
-            <h2 className="text-center font-display text-2xl font-semibold tracking-widest">FRAGRANCE NOTES</h2>
+            <p className="eyebrow text-center">Composition</p>
+            <h2 className="mt-3 text-center font-display text-4xl md:text-5xl">Fragrance Notes</h2>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {notes.map((note) => (
+              {notes.map((note, i) => (
                 <div key={note.title} className="border border-border bg-background">
                   <img
                     src={note.image}
@@ -200,8 +217,17 @@ function PageContent() {
                     className="aspect-square w-full object-cover"
                   />
                   <div className="p-8 md:p-10">
-                    <h3 className="text-xs font-semibold tracking-[0.2em] text-muted-foreground">{note.title}</h3>
-                    <p className="mt-4 font-display text-2xl font-semibold leading-snug">{note.items}</p>
+                    <div className="flex items-baseline gap-3">
+                      <span className="font-display text-2xl italic text-muted-foreground">0{i + 1}</span>
+                      <h3 className="eyebrow">{note.title}</h3>
+                    </div>
+                    <p className="mt-4 font-display text-3xl leading-snug">{note.items}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
                   </div>
                 </div>
               ))}
