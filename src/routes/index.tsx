@@ -249,8 +249,9 @@ function PageContent() {
                 className="w-full border border-border object-cover"
               />
               <div>
-                <h2 className="font-display text-2xl font-semibold tracking-widest">THE FILM</h2>
-                <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+                <p className="eyebrow">Chapter I</p>
+                <h2 className="mt-3 font-display text-4xl md:text-5xl">The Film</h2>
+                <p className="mt-6 text-base leading-relaxed text-muted-foreground">
                   Sculpted in matte black, weighted like the piece it is named for. Legion is built to be held before
                   it is ever worn.
                 </p>
@@ -273,21 +274,54 @@ function PageContent() {
               className="w-full border border-border object-cover"
             />
             <div className="flex flex-col justify-center border border-border bg-background p-10 md:p-14">
-              <h2 className="font-display text-2xl font-semibold tracking-widest">MADE TO LAST</h2>
-              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              <p className="eyebrow">Chapter II</p>
+              <h2 className="mt-3 font-display text-4xl md:text-5xl">Made to Last</h2>
+              <p className="mt-6 text-base leading-relaxed text-muted-foreground">
                 24% parfum concentration. 10+ hours of wear. One spray is a statement, two is a strategy.
               </p>
+              <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-border pt-8">
+                {[
+                  ["24%", "Concentration"],
+                  ["10+", "Hours"],
+                  ["100", "ML"],
+                ].map(([v, l]) => (
+                  <div key={l}>
+                    <dt className="font-display text-3xl">{v}</dt>
+                    <dd className="eyebrow mt-1">{l}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </section>
 
+        {/* The Ritual */}
+        <section className="border-t border-border">
+          <div className="container mx-auto px-6 py-16 md:px-12 lg:py-24">
+            <p className="eyebrow">Chapter III</p>
+            <h2 className="mt-3 font-display text-4xl md:text-5xl">The Ritual</h2>
+            <ol className="mt-12 grid gap-10 md:grid-cols-3">
+              {ritual.map((step, i) => (
+                <li key={step.title} className="border-t border-foreground pt-6">
+                  <span className="font-display text-5xl italic text-muted-foreground">0{i + 1}</span>
+                  <h3 className="mt-4 font-display text-2xl">{step.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
         {/* Brand Story */}
-        <section className="container mx-auto px-6 py-16 md:px-12 lg:py-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-display text-2xl font-semibold tracking-widest">THE SARKAR STORY</h2>
-            <p className="mt-6 text-xl leading-relaxed text-muted-foreground">
-              Sarkar crafts uncompromising fragrances for those who make the first move.
-            </p>
+        <section className="border-t border-border bg-foreground text-background">
+          <div className="container mx-auto px-6 py-20 md:px-12 lg:py-28">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="eyebrow text-background/60">The Sarkar Story</p>
+              <blockquote className="mt-6 font-display text-3xl italic leading-snug md:text-5xl">
+                “Sarkar crafts uncompromising fragrances for those who make the first move.”
+              </blockquote>
+              <p className="eyebrow mt-8 text-background/60">Est. Mumbai</p>
+            </div>
           </div>
         </section>
       </main>
