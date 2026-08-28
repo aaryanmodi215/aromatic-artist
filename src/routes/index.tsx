@@ -125,18 +125,19 @@ function PageContent() {
                   PARFUM
                 </span>
               </div>
-              <h1 className="mt-6 font-display text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-                LEGION{" "}
-                <span className="ml-0 align-top text-lg font-medium text-muted-foreground md:text-xl">
-                  (100ML)
+              <p className="eyebrow mt-8">No. 02 — The Legion</p>
+              <h1 className="mt-3 font-display text-6xl leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
+                Legion
+                <span className="ml-3 align-top font-sans text-xs font-semibold tracking-[0.2em] text-muted-foreground">
+                  100ML
                 </span>
               </h1>
-              <p className="mt-4 text-sm font-semibold tracking-widest text-muted-foreground">
-                LATE NIGHTS · POWER MOVES · LASTING IMPRESSION
+              <p className="mt-4 font-display text-2xl italic text-muted-foreground md:text-3xl">
+                The scent of decisive moves.
               </p>
-              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
-                The scent of decisive moves. Citrus fire opens the game, oud and rose take the center, and amber
-                sandalwood closes it for good.
+              <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+                Citrus fire opens the game, oud and rose take the centre, amber sandalwood closes it for good. Late
+                nights, power moves, a lasting impression.
               </p>
               <div className="mt-8">
                 <div className="flex flex-wrap items-baseline gap-3">
