@@ -132,7 +132,7 @@ function PageContent() {
                   100ML
                 </span>
               </h1>
-              <p className="mt-4 font-display text-2xl italic text-muted-foreground md:text-3xl">
+              <p className="mt-4 font-display text-2xl text-muted-foreground md:text-3xl">
                 The scent of decisive moves.
               </p>
               <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
@@ -189,7 +189,7 @@ function PageContent() {
               <div key={k} className="flex shrink-0 items-center">
                 {["Oud", "Bergamot", "Rose", "Amber", "Sandalwood", "Vetiver", "Pink Pepper"].map((w) => (
                   <span key={w} className="flex items-center">
-                    <span className="px-6 font-display text-xl italic">{w}</span>
+                    <span className="px-6 font-display text-xl">{w}</span>
                     <span className="text-xs">✦</span>
                   </span>
                 ))}
@@ -218,7 +218,7 @@ function PageContent() {
                   />
                   <div className="p-8 md:p-10">
                     <div className="flex items-baseline gap-3">
-                      <span className="font-display text-2xl italic text-muted-foreground">0{i + 1}</span>
+                      <span className="font-display text-2xl text-muted-foreground">0{i + 1}</span>
                       <h3 className="eyebrow">{note.title}</h3>
                     </div>
                     <p className="mt-4 font-display text-3xl leading-snug">{note.items}</p>
@@ -303,7 +303,7 @@ function PageContent() {
             <ol className="mt-12 grid gap-10 md:grid-cols-3">
               {ritual.map((step, i) => (
                 <li key={step.title} className="border-t border-foreground pt-6">
-                  <span className="font-display text-5xl italic text-muted-foreground">0{i + 1}</span>
+                  <span className="font-display text-5xl text-muted-foreground">0{i + 1}</span>
                   <h3 className="mt-4 font-display text-2xl">{step.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
                 </li>
@@ -317,7 +317,7 @@ function PageContent() {
           <div className="container mx-auto px-6 py-20 md:px-12 lg:py-28">
             <div className="mx-auto max-w-3xl text-center">
               <p className="eyebrow text-background/60">The Sarkar Story</p>
-              <blockquote className="mt-6 font-display text-3xl italic leading-snug md:text-5xl">
+              <blockquote className="mt-6 font-display text-3xl leading-snug md:text-5xl">
                 “Sarkar crafts uncompromising fragrances for those who make the first move.”
               </blockquote>
               <p className="eyebrow mt-8 text-background/60">Est. Mumbai</p>
