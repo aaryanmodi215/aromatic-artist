@@ -228,12 +228,6 @@ function PageContent() {
             </div>
           </div>
         </section>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Film */}
         <section className="border-t border-border">
