@@ -344,3 +344,18 @@ const notes = [
   { title: "HEART NOTES", items: "Oud, Rose, Geranium", image: noteHeart },
   { title: "BASE NOTES", items: "Amber, Sandalwood, Vetiver", image: noteBase },
 ];
+
+const ritual = [
+  {
+    title: "Pulse, not air",
+    body: "Two sprays on the wrists and the base of the throat. Skin carries oud further than fabric ever will.",
+  },
+  {
+    title: "Let it settle",
+    body: "Give it ninety seconds. The bergamot burns off and the rose and oud take the room.",
+  },
+  {
+    title: "Leave early",
+    body: "Legion keeps working for ten hours. The impression stays long after you have gone.",
+  },
+];
